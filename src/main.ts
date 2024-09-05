@@ -14,6 +14,7 @@ import ShaderProgram, {Shader} from './rendering/gl/ShaderProgram';
 const controls = {
   tesselations: 5,
   'Load Scene': loadScene, // A function pointer, essentially
+  color: [0.0, 1.0, 0.0, 1.0]
 };
 
 let icosphere: Icosphere;
@@ -43,6 +44,8 @@ function main() {
   const gui = new DAT.GUI();
   gui.add(controls, 'tesselations', 0, 8).step(1);
   gui.add(controls, 'Load Scene');
+
+  gui.addColor(controls, 'color');
 
   // get canvas and webgl context
   const canvas = <HTMLCanvasElement> document.getElementById('canvas');
@@ -74,6 +77,15 @@ function main() {
     stats.begin();
     gl.viewport(0, 0, window.innerWidth, window.innerHeight);
     renderer.clear();
+
+    // set base color
+    lambert.setGeometryColor([
+      controls.color[0],
+      controls.color[1],
+      controls.color[2],
+      controls.color[3]
+    ])
+
     if(controls.tesselations != prevTesselations)
     {
       prevTesselations = controls.tesselations;
