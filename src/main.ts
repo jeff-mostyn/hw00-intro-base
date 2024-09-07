@@ -72,11 +72,18 @@ function main() {
   ]);
 
   // This function will be called every frame
-  function tick() {
+  function tick(thisFrame: number) {
+
+    // convert time to seconds
+    thisFrame *= 0.001;
+
+    // update stuff
     camera.update();
     stats.begin();
     gl.viewport(0, 0, window.innerWidth, window.innerHeight);
     renderer.clear();
+
+    lambert.setTime(thisFrame);
 
     // set base color
     lambert.setGeometryColor([
@@ -114,7 +121,7 @@ function main() {
   camera.updateProjectionMatrix();
 
   // Start the render loop
-  tick();
+  tick(0);
 }
 
 main();
