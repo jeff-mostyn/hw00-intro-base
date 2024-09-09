@@ -73,6 +73,8 @@ To check if everything is on the right track:
 3. Updated lambert-frag.glsl to render Worley/Voronoi noise as a multiplier to the chosen color
 4. Added sine-based displacement over time to the cube so it non-uniformly contracts and expands.
 
+[Live Site Link](https://jeff-mostyn.github.io/hw00-intro-base/)
+
 <p align="center">
   <img src="./images/sampleImage1.JPG">
 </p>
