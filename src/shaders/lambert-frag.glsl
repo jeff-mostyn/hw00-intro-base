@@ -30,7 +30,7 @@ const float maxLocusDist = 1.73;
 // -------- Function Defs ------------
 float hash3to1 (vec3 point);
 vec3 hash3to3 (vec3 point);
-vec3 WorleyNoise (vec3 point);
+float WorleyNoise (vec3 point);
 vec3 GetWorleyLocus (vec3 point);
 
 float hash3to1(vec3 point) {
@@ -61,7 +61,7 @@ vec3 hash3to3(vec3 point3D) {
     ) * 200419.35);
 }
 
-vec3 WorleyNoise (vec3 point) {
+float WorleyNoise (vec3 point) {
     // adjust point "location" by cell count multiplier
     point *= cellCountMultiplier;
 
@@ -96,7 +96,7 @@ vec3 WorleyNoise (vec3 point) {
 
     // return a fractional color modifier based on how far current point is from closest locus
     // closer to locus (lower dist) will return closer to white, while further will return darker color
-    return 1.0 - (vec3(minDist, minDist, minDist) / maxLocusDist);
+    return 1.0 - (minDist / maxLocusDist);
 }
 
 vec3 GetWorleyLocus (vec3 point) {
